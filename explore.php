@@ -46,33 +46,13 @@ https://templatemo.com/tm-577-liberty-market
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.php" class="logo">
-                        <img src="assets/images/logo.png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="explore.html" class="active">Explore</a></li>
-                        <li><a href="details.php">Item Details</a></li>
-                        <li><a href="author.php">Author</a></li>
-                        <li><a href="create.php">Create Yours</a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
+  <?php
+  include_once "parts/header.php";
+
+  if(!isset($common)) {
+      $common = new stdClass();
+  }
+  ?>
   <!-- ***** Header Area End ***** -->
 
   <div class="page-heading">
@@ -421,7 +401,8 @@ https://templatemo.com/tm-577-liberty-market
       </div>
     </div>
   </div>
-  
+
+<!--  Footer -->
   <div class="top-seller">
     <div class="container">
       <div class="row">
@@ -535,17 +516,9 @@ https://templatemo.com/tm-577-liberty-market
     </div>
   </div>
 
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <p>Copyright © 2022 <a href="#">Liberty</a> NFT Marketplace Co., Ltd. All rights reserved.
-          &nbsp;&nbsp;
-          Designed by <a title="HTML CSS Templates" rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <?php
+  include_once "parts/footer.php";
+  ?>
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

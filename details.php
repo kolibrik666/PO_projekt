@@ -46,33 +46,13 @@ https://templatemo.com/tm-577-liberty-market
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.php" class="logo">
-                        <img src="assets/images/logo.png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="explore.php">Explore</a></li>
-                        <li><a href="details.html" class="active">Item Details</a></li>
-                        <li><a href="author.php">Author</a></li>
-                        <li><a href="create.php">Create Yours</a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
+  <?php
+  include_once "parts/header.php";
+
+  if(!isset($common)) {
+      $common = new stdClass();
+  }
+  ?>
   <!-- ***** Header Area End ***** -->
 
   <div class="page-heading normal-space">
@@ -97,48 +77,6 @@ https://templatemo.com/tm-577-liberty-market
 
   <div class="item-details-page">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="section-heading">
-            <div class="line-dec"></div>
-            <h2>View Details <em>For Item</em> Here.</h2>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div class="left-image">
-            <img src="assets/images/item-details-01.jpg" alt="" style="border-radius: 20px;">
-          </div>
-        </div>
-        <div class="col-lg-5 align-self-center">
-          <h4>Dolores Haze Westworld Eye</h4>
-          <span class="author">
-            <img src="assets/images/author-02.jpg" alt="" style="max-width: 50px; border-radius: 50%;">
-            <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
-          </span>
-          <p>Lorem ipsum dolor sit amet, consectetu dipiscingei elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <div class="row">
-            <div class="col-3">
-              <span class="bid">
-                Current Bid<br><strong>6.06 ETH</strong><br><em>($8,025.50)</em>
-              </span>
-            </div>
-            <div class="col-4">
-              <span class="owner">
-                Owner<br><strong>David Walker</strong><br><em>(@davidwalker)</em>
-              </span>
-            </div>
-            <div class="col-5">
-              <span class="ends">
-                Ends In<br><strong>3D 05H 20M 58S</strong><br><em>(January 22nd, 2021)</em>
-              </span>
-            </div>
-          </div>
-          <form action="submit">
-            <label for="quantity-text">Place Bid:</label>
-            <input placeholder="1 ETH" class="quantity-text">
-            <button type="submit" id="form-submit" class="main-button">Submit Now</button>
-          </form>
-        </div>
         <div class="col-lg-12">
           <div class="current-bid">
             <div class="row">
@@ -146,14 +84,6 @@ https://templatemo.com/tm-577-liberty-market
                 <div class="mini-heading"><h4>Current Biddings Prices ( ETH )</h4></div>
               </div>
               <div class="col-lg-6">
-                <fieldset>
-                  <select name="Category" class="form-select" aria-label="Default select example" id="chooseCategory" onchange="this.form.click()">
-                      <option selected>Sort By: Latest</option>
-                      <option type="checkbox" name="option1" value="old">Sort By: Oldest</option>
-                      <option value="low">Sort By: Lowest</option>
-                      <option value="high">Sort By: Highest</option>
-                  </select>
-              </fieldset>
               </div>
               <div class="col-lg-4 col-md-6">
                 <div class="item">
@@ -297,17 +227,9 @@ https://templatemo.com/tm-577-liberty-market
     </div>
   </div>
 
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <p>Copyright © 2022 <a href="#">Liberty</a> NFT Marketplace Co., Ltd. All rights reserved.
-          &nbsp;&nbsp;
-          Designed by <a title="HTML CSS Templates" rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <?php
+  include_once "parts/footer.php";
+  ?>
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

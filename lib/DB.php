@@ -8,7 +8,7 @@ class DB
     private $port = 3306;
     private $username = "root";
     private $password = "";
-    private $dbName = "po-2023-2024";
+    private $dbName = "nft_db";
 
     private \PDO $connection;
 
@@ -52,4 +52,19 @@ class DB
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public function getMenuItems(): array
+    {
+        $sql = "SELECT page_name, url FROM menu";
+        $query = $this->connection->query($sql);
+        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $finalMenu = [];
+
+        foreach ($data as $menuItem) {
+            $finalMenu[$menuItem['page_name']] = $menuItem['url'];
+        }
+
+        return $finalMenu;
+    }
+
 }
