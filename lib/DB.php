@@ -67,4 +67,26 @@ class DB
         return $finalMenu;
     }
 
+    public function getNftItems(): array
+    {
+        $sql = "SELECT title, desc, url, price, royalties, image_url, ends_in FROM nft";
+        $query = $this->connection->query($sql);
+        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $finalMenu = [];
+
+        foreach ($data as $menuItem) {
+            $finalMenu[$menuItem['title']] =
+                [
+                'url' => $menuItem['url'],
+                'desc' => $menuItem['desc'],
+                'price' => $menuItem['price'],
+                'royalties' => $menuItem['royalties'],
+                'image_url' => $menuItem['image_url'],
+                'ends_in' => $menuItem['ends_in'],
+            ];
+        }
+
+        return $finalMenu;
+    }
+
 }
