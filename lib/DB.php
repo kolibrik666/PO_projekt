@@ -46,7 +46,6 @@ class DB
                 $this->username,
                 $this->password
             );
-            // set the PDO error mode to exception
             $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
@@ -69,24 +68,81 @@ class DB
 
     public function getNftItems(): array
     {
-        $sql = "SELECT title, desc, url, price, royalties, image_url, ends_in FROM nft";
+        $sql = "
+            SELECT t1.id, t1.title, t1.description, t1.price, t1.royalties, t1.image_url, t1.ends_in, t2.username, t2.user_image_url 
+            FROM nft AS t1
+            INNER JOIN users AS t2 ON t1.users_id = t2.id;";
         $query = $this->connection->query($sql);
         $data = $query->fetchAll(\PDO::FETCH_ASSOC);
-        $finalMenu = [];
+        $finalNft = [];
 
-        foreach ($data as $menuItem) {
-            $finalMenu[$menuItem['title']] =
+        foreach ($data as $nftItem) {
+            $finalNft[$nftItem['title']] =
                 [
-                'url' => $menuItem['url'],
-                'desc' => $menuItem['desc'],
-                'price' => $menuItem['price'],
-                'royalties' => $menuItem['royalties'],
-                'image_url' => $menuItem['image_url'],
-                'ends_in' => $menuItem['ends_in'],
-            ];
+                'id' => $nftItem['url'],
+                'description' => $nftItem['description'],
+                'price' => $nftItem['price'],
+                'royalties' => $nftItem['royalties'],
+                'image_url' => $nftItem['image_url'],
+                'ends_in' => $nftItem['ends_in'],
+                'username' => $nftItem['username'],
+                'user_image_url' => $nftItem['user_image_url'],
+                ];
         }
 
-        return $finalMenu;
+        return $finalNft;
+    }
+    public function isUsernameExists($username)
+    {
+        $sql = "SELECT COUNT(*) as count FROM users WHERE username = :username";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':username', $username, \PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result['count'] > 0;
     }
 
+    public function getUserIdByUsername($username)
+    {
+        $sql = "SELECT id FROM users WHERE username = :username";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':username', $username, \PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result['id'];
+        } else {
+            return null;
+        }
+    }
+
+    public function insertUser($username,$user_image_url)
+    {
+        $sql = "INSERT INTO users(username,user_image_url) 
+           VALUES (:username,:user_image_url)";
+        $stm = $this->connection->prepare($sql);
+        $stm->bindValue(":username", $username);
+        $stm->bindValue(":user_image_url", $user_image_url);
+        $result = $stm->execute();
+
+        return $result;
+    }
+
+    public function insertNft($title,$description,$price,$royalties,$image_url,$ends_in,$users_id)
+    {
+        $sql = "INSERT INTO nft(title,description,price,royalties,image_url,ends_in,users_id) 
+           VALUES (:title,:description,:price, :royalties,:image_url, :ends_in, :users_id)";
+        $stm = $this->connection->prepare($sql);
+        $stm->bindValue(":title", $title);
+        $stm->bindValue(":description", $description);
+        $stm->bindValue(":price", $price);
+        $stm->bindValue(":royalties", $royalties);
+        $stm->bindValue(":image_url", $image_url);
+        $stm->bindValue(":ends_in", $ends_in);
+        $stm->bindValue(":users_id", $users_id);
+        $result = $stm->execute();
+        return $result;
+    }
 }
