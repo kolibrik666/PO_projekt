@@ -48,10 +48,6 @@ https://templatemo.com/tm-577-liberty-market
   <!-- ***** Header Area Start ***** -->
   <?php
   include_once "parts/header.php";
-
-  if(!isset($common)) {
-      $common = new stdClass();
-  }
   ?>
   <!-- ***** Header Area End ***** -->
 
@@ -67,7 +63,7 @@ https://templatemo.com/tm-577-liberty-market
               <a href="explore.php">Explore Our Items</a>
             </div>
             <div class="border-button">
-              <a href="create.html">Create Your NFT</a>
+              <a href="create.php">Create Your NFT</a>
             </div>
           </div>
         </div>
@@ -133,7 +129,7 @@ https://templatemo.com/tm-577-liberty-market
             </div>
           </form>
         </div>
-        
+
       </div>
     </div>
   </div>

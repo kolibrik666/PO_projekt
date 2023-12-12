@@ -6,7 +6,7 @@ use praca_Pavlisin\Lib\DB;
 $db = new DB("localhost", 3306, "root", "", "nft_db");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+    //ziskanie dat
     $title = $_POST['title'];
     $description = $_POST['description'];
     $username = $_POST['username'];

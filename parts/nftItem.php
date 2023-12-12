@@ -8,14 +8,14 @@ use praca_Pavlisin\Lib\DB;
 
 $common = new Common();
 $db = new DB("localhost", 3306, "root", "", "nft_db");
-?>
-<?php
-    $nftItems = $db->getNftItems();
 
-    foreach ($nftItems as $title => $item) {
-        $priceInUsd = convertEthToUsd($item['price']);
-        $endsInDisplay = formatTimeDisplay($item['ends_in']);
-        ?>
+$nftItems = $db->getNftItems();
+
+foreach ($nftItems as $title => $item)
+{
+    $priceInUsd = convertEthToUsd($item['price']);
+    $endsInDisplay = formatTimeDisplay($item['ends_in']);
+    ?>
         <div class="col-lg-6 currently-market-item all msc">
             <div class="item">
                 <div class="left-image">
@@ -43,6 +43,6 @@ $db = new DB("localhost", 3306, "root", "", "nft_db");
                 </div>
             </div>
         </div>
-        <?php
-    }
+    <?php
+}
 ?>

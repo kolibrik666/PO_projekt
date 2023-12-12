@@ -69,7 +69,8 @@ class DB
     public function getNftItems(): array
     {
         $sql = "
-            SELECT t1.id, t1.title, t1.description, t1.price, t1.royalties, t1.image_url, t1.ends_in, t2.username, t2.user_image_url 
+            SELECT t1.id, t1.title, t1.description, t1.price, t1.royalties,
+                   t1.image_url, t1.ends_in, t2.username, t2.user_image_url 
             FROM nft AS t1
             INNER JOIN users AS t2 ON t1.users_id = t2.id;";
         $query = $this->connection->query($sql);
@@ -79,7 +80,7 @@ class DB
         foreach ($data as $nftItem) {
             $finalNft[$nftItem['title']] =
                 [
-                'id' => $nftItem['url'],
+                'id' => $nftItem['id'],
                 'description' => $nftItem['description'],
                 'price' => $nftItem['price'],
                 'royalties' => $nftItem['royalties'],
@@ -91,6 +92,27 @@ class DB
         }
 
         return $finalNft;
+    }
+    public function getUserInfo(): array
+    {
+        $sql = "
+            SELECT t2.id, t1.username, t1.user_image_url, t2.earnings_eth,
+            FROM users AS t1
+            INNER JOIN sellers AS t2 ON t1.id = t2.users_id;";
+        $query = $this->connection->query($sql);
+        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $result = [];
+
+        foreach ($data as $user) {
+            $result[$user['username']] =
+                [
+                    'id' => $user['id'],
+                    'user_image_url' => $user['user_image_url'],
+                    'earnings_eth' => $user['earnings_eth'],
+                ];
+        }
+
+        return $result;
     }
     public function isUsernameExists($username)
     {

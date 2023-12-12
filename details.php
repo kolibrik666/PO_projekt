@@ -48,10 +48,6 @@ https://templatemo.com/tm-577-liberty-market
   <!-- ***** Header Area Start ***** -->
   <?php
   include_once "parts/header.php";
-
-  if(!isset($common)) {
-      $common = new stdClass();
-  }
   ?>
   <!-- ***** Header Area End ***** -->
 
