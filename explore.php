@@ -66,62 +66,9 @@ https://templatemo.com/tm-577-liberty-market
         <div class="row">
           <div class="col-lg-12">
             <div class="owl-features owl-carousel">
-              <div class="item">
-                <div class="thumb">
-                  <img src="assets/images/featured-01.jpg" alt="" style="border-radius: 20px;">
-                  <div class="hover-effect">
-                    <div class="content">
-                      <h4>Triple Mutant Ape Bored</h4>
-                      <span class="author">
-                        <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="thumb">
-                  <img src="assets/images/featured-02.jpg" alt="" style="border-radius: 20px;">
-                  <div class="hover-effect">
-                    <div class="content">
-                      <h4>Bored Ape Kennel Club</h4>
-                      <span class="author">
-                        <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="thumb">
-                  <img src="assets/images/featured-03.jpg" alt="" style="border-radius: 20px;">
-                  <div class="hover-effect">
-                    <div class="content">
-                      <h4>Genesis Club by KMT</h4>
-                      <span class="author">
-                        <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="thumb">
-                  <img src="assets/images/featured-04.jpg" alt="" style="border-radius: 20px;">
-                  <div class="hover-effect">
-                    <div class="content">
-                      <h4>Crypto Aurora Guy</h4>
-                      <span class="author">
-                        <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                        <h6>Liberty Artist<br><a href="#">@libertyart</a></h6>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <?php
+                include_once "parts/exploreIconItem.php";
+                ?>
             </div>
           </div>
         </div>
@@ -156,106 +103,9 @@ https://templatemo.com/tm-577-liberty-market
             <h2>Our Top Sellers This Week.</h2>
           </div>
         </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>1.</h4>
-                <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>NFT Top Artist<br><a href="#">8.6 ETH or $12,000</a></h6>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>2.</h4>
-                <img src="assets/images/author-02.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>George Brandon<br><a href="#">4.8 ETH or $14,000</a></h6>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>3.</h4>
-                <img src="assets/images/author-03.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>Johnny Mayson<br><a href="#">6.2 ETH or $26,000</a></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>4.</h4>
-                <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>Liberty Artist<br><a href="#">4.5 ETH or $11,600</a></h6>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>5.</h4>
-                <img src="assets/images/author-02.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>Ronald Martino<br><a href="#">7.2 ETH or $14,500</a></h6>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>6.</h4>
-                <img src="assets/images/author-03.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>Anthony Brown<br><a href="#">8.6 ETH or $7,400</a></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>7.</h4>
-                <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>Liberty Artist<br><a href="#">9.8 ETH or $14,200</a></h6>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>8.</h4>
-                <img src="assets/images/author-02.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>Ronald Martino<br><a href="#">6.5 ETH or $15,000</a></h6>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>9.</h4>
-                <img src="assets/images/author-03.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>David Walker<br><a href="#">2.5 ETH or $12,000</a></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>10.</h4>
-                <img src="assets/images/author.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>Liberty Artist<br><a href="#">8.8 ETH or $16,800</a></h6>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>11.</h4>
-                <img src="assets/images/author-02.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>Anthony Brown<br><a href="#">7.5 ETH or $15,400</a></h6>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="item">
-                <h4>12.</h4>
-                <img src="assets/images/author-03.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-                <h6>David Walker<br><a href="#">5.2 ETH or $12,300</a></h6>
-              </div>
-            </div>
-          </div>
-        </div>
+          <?php
+          include_once "parts/exploreProfileItem.php";
+          ?>
       </div>
     </div>
   </div>

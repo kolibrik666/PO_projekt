@@ -96,9 +96,11 @@ class DB
     public function getUserInfo(): array
     {
         $sql = "
-            SELECT t2.id, t1.username, t1.user_image_url, t2.earnings_eth,
-            FROM users AS t1
-            INNER JOIN sellers AS t2 ON t1.id = t2.users_id;";
+            SELECT t1.id, t2.username, t2.user_image_url, t1.earnings_eth
+            FROM sellers AS t1
+            INNER JOIN users AS t2 ON t2.id = t1.users_id
+            ORDER BY t1.earnings_eth DESC;";
+
         $query = $this->connection->query($sql);
         $data = $query->fetchAll(\PDO::FETCH_ASSOC);
         $result = [];
