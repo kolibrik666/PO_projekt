@@ -19,9 +19,9 @@ $endsInDisplay = formatTimeDisplay($item['ends_in']);
             <div class="row">
                 <div class="col-lg-12">
                     <span class="author">
-                      <img src="<?= $item['user_image_url'] ?>" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                      <img src="assets/images/author-<?= $item['user_image_num']?>.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
                     </span>
-                    <img src="<?= $item['image_url'] ?>" alt="" style="border-radius: 20px;">
+                    <img src="assets/images/discover-<?= $item['image_num'] ?>.jpg" alt="" style="border-radius: 20px;">
                     <h4><?= $title ?></h4>
                 </div>
                 <div class="col-lg-12">

@@ -6,7 +6,7 @@ use praca_Pavlisin\Lib\DB;
 $db = new DB("localhost", 3306, "root", "", "nft_db");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //ziskanie dat
+
     $title = $_POST['title'];
     $description = $_POST['description'];
     $username = $_POST['username'];
@@ -17,15 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($db->isUsernameExists($username)) {
         $user_id = $db->getUserIdByUsername($username);
     } else {
-        $profileFiles = glob('assets/images/author-*.jpg');
-        $randomProfile = $profileFiles[array_rand($profileFiles)];
-        $db->insertUser($username,$randomProfile);
+        $randomPrfNumber = sprintf('%02d', rand(1, 3));
+        $db->insertUser($username,$randomPrfNumber);
         $user_id = $db->getUserIdByUsername($username);
     }
 
-    $imageFiles = glob('assets/images/discover-*.jpg');
-    $randomImage = $imageFiles[array_rand($imageFiles)];
-    $insert = $db->insertNft($title,$description,$price,$royalties,$randomImage,$date,$user_id);
+    $randomImgNumber = sprintf('%02d', rand(1, 4));
+    $insert = $db->insertNft($title,$description,$price,$royalties,$randomImgNumber,$date,$user_id);
     if($insert) {
         header("Location: index.php");
     }

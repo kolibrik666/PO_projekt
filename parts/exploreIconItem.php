@@ -13,20 +13,16 @@ $nftItems = $db->getNftItems();
 
 foreach ($nftItems as $title => $item)
 {
-    $imageUrl = $item['image_url'];
-    $imageNum = substr($imageUrl, -6);
     ?>
 
     <div class="item">
         <div class="thumb">
-            <img src="assets/images/featured-<?= $imageNum?>" alt="" style="border-radius: 20px;">
-<!--            <img src="--><?php //= $item['image_url'] ?><!--" alt="" style="border-radius: 20px;">-->
-
+            <img src="assets/images/featured-<?=$item['image_num']?>.jpg" alt="" style="border-radius: 20px;">
             <div class="hover-effect">
                 <div class="content">
                     <h4><?=$title?></h4>
                     <span class="author">
-                        <img src="<?= $item['user_image_url'] ?>" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                        <img src="<?= $item['user_image_num'] ?>" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
                         <h6> <?=$item['username']?><br></h6>
                       </span>
                 </div>

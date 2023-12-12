@@ -19,7 +19,7 @@ foreach ($users as $username => $item)
         <div class="row">
             <div class="col-lg-12">
                 <div class="item">
-                    <img src="<?= $item['user_image_url'] ?>" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
+                    <img src="assets/images/author-<?= $item['user_image_num'] ?>.jpg" alt="" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
                     <h6><?= $username ?><br><a href="#"><?= $item['earnings_eth'] ?> ETH or $<?= $priceInUsd ?></a></h6>
                 </div>
             </div>

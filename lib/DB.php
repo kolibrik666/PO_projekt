@@ -70,7 +70,7 @@ class DB
     {
         $sql = "
             SELECT t1.id, t1.title, t1.description, t1.price, t1.royalties,
-                   t1.image_url, t1.ends_in, t2.username, t2.user_image_url 
+                   t1.image_num, t1.ends_in, t2.username, t2.user_image_num 
             FROM nft AS t1
             INNER JOIN users AS t2 ON t1.users_id = t2.id;";
         $query = $this->connection->query($sql);
@@ -84,10 +84,10 @@ class DB
                 'description' => $nftItem['description'],
                 'price' => $nftItem['price'],
                 'royalties' => $nftItem['royalties'],
-                'image_url' => $nftItem['image_url'],
+                'image_num' => $nftItem['image_num'],
                 'ends_in' => $nftItem['ends_in'],
                 'username' => $nftItem['username'],
-                'user_image_url' => $nftItem['user_image_url'],
+                'user_image_num' => $nftItem['user_image_num'],
                 ];
         }
 
@@ -96,7 +96,7 @@ class DB
     public function getUserInfo(): array
     {
         $sql = "
-            SELECT t1.id, t2.username, t2.user_image_url, t1.earnings_eth
+            SELECT t1.id, t2.username, t2.user_image_num, t1.earnings_eth
             FROM sellers AS t1
             INNER JOIN users AS t2 ON t2.id = t1.users_id
             ORDER BY t1.earnings_eth DESC;";
@@ -109,12 +109,20 @@ class DB
             $result[$user['username']] =
                 [
                     'id' => $user['id'],
-                    'user_image_url' => $user['user_image_url'],
+                    'user_image_num' => $user['user_image_num'],
                     'earnings_eth' => $user['earnings_eth'],
                 ];
         }
-
         return $result;
+    }
+
+    public function getUsers():array
+    {
+        $sql = "SELECT * FROM users";
+        $query = $this->connection->query($sql);
+        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $data;
     }
     public function isUsernameExists($username)
     {
@@ -142,28 +150,28 @@ class DB
         }
     }
 
-    public function insertUser($username,$user_image_url)
+    public function insertUser($username,$user_image_num)
     {
-        $sql = "INSERT INTO users(username,user_image_url) 
-           VALUES (:username,:user_image_url)";
+        $sql = "INSERT INTO users(username,user_image_num) 
+           VALUES (:username,:user_image_num)";
         $stm = $this->connection->prepare($sql);
         $stm->bindValue(":username", $username);
-        $stm->bindValue(":user_image_url", $user_image_url);
+        $stm->bindValue(":user_image_num", $user_image_num);
         $result = $stm->execute();
 
         return $result;
     }
 
-    public function insertNft($title,$description,$price,$royalties,$image_url,$ends_in,$users_id)
+    public function insertNft($title,$description,$price,$royalties,$image_num,$ends_in,$users_id)
     {
-        $sql = "INSERT INTO nft(title,description,price,royalties,image_url,ends_in,users_id) 
-           VALUES (:title,:description,:price, :royalties,:image_url, :ends_in, :users_id)";
+        $sql = "INSERT INTO nft(title,description,price,royalties,image_num,ends_in,users_id) 
+           VALUES (:title,:description,:price, :royalties,:image_num, :ends_in, :users_id)";
         $stm = $this->connection->prepare($sql);
         $stm->bindValue(":title", $title);
         $stm->bindValue(":description", $description);
         $stm->bindValue(":price", $price);
         $stm->bindValue(":royalties", $royalties);
-        $stm->bindValue(":image_url", $image_url);
+        $stm->bindValue(":image_num", $image_num);
         $stm->bindValue(":ends_in", $ends_in);
         $stm->bindValue(":users_id", $users_id);
         $result = $stm->execute();

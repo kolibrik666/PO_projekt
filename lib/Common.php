@@ -8,7 +8,6 @@ class Common
         1 => [
             "Home" => "index.php",
             "Explore" => "explore.php",
-            //"Item Details" => "details.php",
             "Create Yours" => "create.php"
         ]
     ];
@@ -44,29 +43,5 @@ class Common
         echo $printMenu;
     }
 
-    public function getQnA(): void
-    {
-        $qnaContent = file_get_contents("data/qna.txt");
-        $qna = explode(";", $qnaContent);
-        $qnaCleared = array_filter($qna);
-        $qnaTrimed = array_map('trim', $qnaCleared);
-        $index = 1;
-        $qnaFinal = [];
-        foreach ($qnaTrimed as $value) {
-            if($index % 2 === 0) {
-                $qnaFinal[] = [
-                    'q' => $qnaTrimed[$index-2],
-                    'a' => $qnaTrimed[$index-1]
-                ];
-            }
-            $index++;
-        }
 
-        foreach ($qnaFinal as $pair) {
-            echo '<div class="accordion">
-                <div class="question">'.$pair['q'].'</div>
-                <div class="answer">'.$pair['a'].'</div>
-              </div>';
-        }
-    }
 }

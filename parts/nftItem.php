@@ -19,12 +19,12 @@ foreach ($nftItems as $title => $item)
         <div class="col-lg-6 currently-market-item all msc">
             <div class="item">
                 <div class="left-image">
-                    <img src="<?= $item['image_url'] ?>" alt="" style="border-radius: 20px; min-width: 195px;">
+                    <img src="assets/images/discover-<?= $item['image_num'] ?>.jpg" alt="" style="border-radius: 20px;">
                 </div>
                 <div class="right-content">
                     <h4><?= $title ?></h4>
                     <span class="author">
-                    <img src="<?= $item['user_image_url'] ?>" alt="" style="max-width: 50px; border-radius: 50%;">
+                    <img src="assets/images/author-<?= $item['user_image_num'] ?>.jpg" alt="" style="max-width: 50px; border-radius: 50%;">
                     <h6><?= $item['username'] ?><br></h6>
                 </span>
                     <div class="line-dec"></div>
