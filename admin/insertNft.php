@@ -20,8 +20,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 <div class="container">
-    <h3>Add NFT:</h3><br>
-    <br><br>
+    <h3>Add NFT:</h3>
     <form action="insertNft.php" method="post" style="display: flex; flex-direction: column">
         <label for="name">Name:</label>
         <input type="text" name="name" value=""><br>
