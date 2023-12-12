@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
         <input type="text" name="name" value=""><br>
         <label for="description">Description:</label>
         <textarea name="description"></textarea><br>
-        <label for="price">Price:</label>
+        <label for="price">Price (in ETH):</label>
         <input type="text" name="price" value="" required><br>
         <label for="user_id">User:</label>
         <select name="user_id" required>
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
             foreach ($users as $user) echo '<option value="' . $user['id'] . '">' . $user['username'] . '</option>';
             ?>
         </select><br>
-        </select><br>
+        </select>
         <label for="image_number">Image number:</label>
         <select name="image_number" required>
             <?php
@@ -46,9 +46,9 @@ if (isset($_POST['submit'])) {
             }
             ?>
         </select><br>
-        <label for="royalties">Royalties:</label>
+        <label for="royalties">Royalties: (advised -> 0-25%)</label>
         <input type="text" name="royalties" value=""><br>
-        <label for="date">Date:</label>
+        <label for="date">Ends in Date:</label>
         <input type="date" name="date" value=""><br>
         <input type="submit" name="submit" value="Add NFT">
     </form>
