@@ -69,10 +69,10 @@ class DB
     public function getNftItems(): array
     {
         $sql = "
-            SELECT t1.id, t1.title, t1.description, t1.price, t1.royalties,
-                   t1.image_num, t1.ends_in, t2.username, t2.user_image_num 
-            FROM nft AS t1
-            INNER JOIN users AS t2 ON t1.users_id = t2.id;";
+        SELECT t1.id, t1.title, t1.description, t1.price, t1.royalties,
+               t1.image_num, t1.ends_in, t1.approved, t2.username, t2.user_image_num 
+        FROM nft AS t1
+        INNER JOIN users AS t2 ON t1.users_id = t2.id;";
         $query = $this->connection->query($sql);
         $data = $query->fetchAll(\PDO::FETCH_ASSOC);
         $finalNft = [];
@@ -80,14 +80,15 @@ class DB
         foreach ($data as $nftItem) {
             $finalNft[$nftItem['title']] =
                 [
-                'id' => $nftItem['id'],
-                'description' => $nftItem['description'],
-                'price' => $nftItem['price'],
-                'royalties' => $nftItem['royalties'],
-                'image_num' => $nftItem['image_num'],
-                'ends_in' => $nftItem['ends_in'],
-                'username' => $nftItem['username'],
-                'user_image_num' => $nftItem['user_image_num'],
+                    'id' => $nftItem['id'],
+                    'description' => $nftItem['description'],
+                    'price' => $nftItem['price'],
+                    'royalties' => $nftItem['royalties'],
+                    'image_num' => $nftItem['image_num'],
+                    'ends_in' => $nftItem['ends_in'],
+                    'approved' => $nftItem['approved'],
+                    'username' => $nftItem['username'],
+                    'user_image_num' => $nftItem['user_image_num'],
                 ];
         }
 
@@ -162,10 +163,10 @@ class DB
         return $result;
     }
 
-    public function insertNft($title,$description,$price,$royalties,$image_num,$ends_in,$users_id)
+    public function insertNft($title,$description,$price,$royalties,$image_num,$ends_in,$approved,$users_id)
     {
-        $sql = "INSERT INTO nft(title,description,price,royalties,image_num,ends_in,users_id) 
-           VALUES (:title,:description,:price, :royalties,:image_num, :ends_in, :users_id)";
+        $sql = "INSERT INTO nft(title,description,price,royalties,image_num,ends_in,approved,users_id) 
+           VALUES (:title,:description,:price, :royalties,:image_num, :ends_in,:approved ,:users_id)";
         $stm = $this->connection->prepare($sql);
         $stm->bindValue(":title", $title);
         $stm->bindValue(":description", $description);
@@ -173,8 +174,56 @@ class DB
         $stm->bindValue(":royalties", $royalties);
         $stm->bindValue(":image_num", $image_num);
         $stm->bindValue(":ends_in", $ends_in);
+        $stm->bindValue(":approved", $approved);
         $stm->bindValue(":users_id", $users_id);
         $result = $stm->execute();
         return $result;
+    }
+
+    public function getNft(int $id): array
+    {
+        $sql = "SELECT * FROM nft WHERE id = ".$id;
+        $query = $this->connection->query($sql);
+        $data = $query->fetch(\PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function updateNft($id,$title,$description,$price,$royalties,$image_num,$ends_in,$approved,$users_id)
+    {
+        $sql = "UPDATE nft SET ";
+
+        if (!empty($title)) $sql .= " title = '" . $title . "'";
+        if (!empty($description)) $sql .= ", description = '" . $description . "'";
+        if (!empty($price)) $sql .= ", price = '" . $price . "'";
+        if (!empty($royalties)) $sql .= ", royalties = '" . $royalties . "'";
+        if (!empty($image_num)) $sql .= ", image_num = '" . $image_num . "'";
+        if (!empty($ends_in)) $sql .= ", ends_in = '" . $ends_in . "'";
+        if (!empty($approved)) $sql .= ", approved = '" . $approved . "'";
+        if (!empty($users_id)) $sql .= ", users_id = '" . $users_id . "'";
+
+        $sql .= " WHERE id = " . $id;
+
+        $stmt = $this->connection->prepare($sql);
+        return $stmt->execute();
+    }
+
+    public function sapproveNft($id,$approved)
+    {
+        $sql = "UPDATE nft SET ";
+        if (!empty($approved)) $sql .= ", approved = '" . $approved . "'";
+        $sql .= " WHERE id = " . $id;
+        $stmt = $this->connection->prepare($sql);
+        return $stmt->execute();
+    }
+    public function approveNft($id, $approved)
+    {
+        $sql = "UPDATE nft SET approved = :approved WHERE id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':approved', $approved, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
     }
 }

@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $randomImgNumber = sprintf('%02d', rand(1, 4));
-    $insert = $db->insertNft($title,$description,$price,$royalties,$randomImgNumber,$date,$user_id);
+    $insert = $db->insertNft($title,$description,$price,$royalties,$randomImgNumber,$date,0,$user_id);
     if($insert) {
         header("Location: index.php");
     }

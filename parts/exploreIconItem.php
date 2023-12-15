@@ -13,6 +13,7 @@ $nftItems = $db->getNftItems();
 
 foreach ($nftItems as $title => $item)
 {
+    if ($item["approved"] !== 1) return;
     ?>
 
     <div class="item">

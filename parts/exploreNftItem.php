@@ -12,7 +12,8 @@ $nftItems = $db->getNftItems();
 
 foreach ($nftItems as $title => $item)
 {
-$endsInDisplay = formatTimeDisplay($item['ends_in']);
+    if ($item["approved"] !== 1) return;
+    $endsInDisplay = formatTimeDisplay($item['ends_in']);
 ?>
     <div class="col-lg-3">
         <div class="item">

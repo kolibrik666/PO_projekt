@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $royalties = $_POST['royalties'];
     $date = date('Y-m-d', strtotime($_POST['date']));
 
-    $insert = $db->insertNft($title, $description, $price, $royalties, $image, $date, $user_id);
+    $insert = $db->insertNft($title, $description, $price, $royalties, $image, $date,1, $user_id);
     if ($insert) {
         header("Location: menuAdmin.php");
     } else {
