@@ -27,7 +27,8 @@ $nfts = $db->getNftItems();
         <select name="selectedNft" id="selectedNft" onchange="this.form.submit()">
             <?php
             foreach ($nfts as $title => $item) {
-                echo '<option value="' . $item['id'] . '">' . $title . '</option>';
+                $selected = (isset($_POST['selectedNft']) && $_POST['selectedNft'] == $item['id']) ? 'selected="selected"' : '';
+                echo '<option value="' . $item['id'] . '" ' . $selected . '>' . $title . '</option>';
             }
             ?>
         </select>

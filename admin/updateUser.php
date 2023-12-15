@@ -21,7 +21,8 @@ $users = $db->getUsers();
         <select name="selectedUser" id="selectedUser" onchange="this.form.submit()">
             <?php
             foreach ($users as $user) {
-                echo '<option value="' . $user['id'] . '" ' . (isset($_POST['selectedUser']) && $_POST['selectedUser'] == $user['id'] ? 'selected' : '') . '>' . $user['username'] . '</option>';
+                echo '<option value="' . $user['id'] . '" ' . (isset($_POST['selectedUser']) &&
+                    $_POST['selectedUser'] == $user['id'] ? 'selected' : '') . '>' . $user['username'] . '</option>';
             }
             ?>
         </select>
