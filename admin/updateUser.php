@@ -43,9 +43,10 @@ $users = $db->getUsers();
             <label for="image_number">Image number:</label>
             <select name="image_number" required>
                 <?php
-                for ($i = 1; $i <= 6; $i++) {
-                    $selected = ($i == $selectedUser['user_image_num']) ? 'selected="selected"' : '';
-                    echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
+                for ($i = 1; $i <= 3; $i++) {
+                    $paddedNumber = sprintf('%02d', $i);
+                    $selected = ($paddedNumber == $selectedUser['user_image_num']) ? 'selected="selected"' : '';
+                    echo '<option value="' . $paddedNumber . '" ' . $selected . '>' . $paddedNumber . '</option>';
                 }
                 ?>
             </select><br>
