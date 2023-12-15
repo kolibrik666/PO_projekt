@@ -169,8 +169,7 @@ class DB
         $stm = $this->connection->prepare($sql);
         $stm->bindValue(":username", $username);
         $stm->bindValue(":user_image_num", $user_image_num);
-        $result = $stm->execute();
-        return $result;
+        return $stm->execute();
     }
 
     public function updateUser($id,$username,$user_image_num)
@@ -184,7 +183,10 @@ class DB
         $result = $stmt->execute();
         return $result;
     }
+    public function deleteUser($id)
+    {
 
+    }
     public function insertNft($title,$description,$price,$royalties,$image_num,$ends_in,$approved,$users_id)
     {
         $sql = "INSERT INTO nft(title,description,price,royalties,image_num,ends_in,approved,users_id) 

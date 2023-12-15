@@ -21,7 +21,7 @@ $users = $db->getUsers();
         <select name="selectedUser" id="selectedUser" onchange="this.form.submit()">
             <?php
             foreach ($users as $user) {
-                echo '<option value="' . $user['id'] . '">' . $user['username'] . '</option>';
+                echo '<option value="' . $user['id'] . '" ' . (isset($_POST['selectedUser']) && $_POST['selectedUser'] == $user['id'] ? 'selected' : '') . '>' . $user['username'] . '</option>';
             }
             ?>
         </select>
@@ -34,6 +34,8 @@ $users = $db->getUsers();
         $selectedUser = $db->getUser($selectedUserId);
         ?>
         <form action="updateUser.php" method="post" style="display: flex; flex-direction: column">
+            <input type="hidden" name="id" value="<?= $selectedUser['id']; ?>">
+
             <label for="name">Username:</label>
             <input type="text" name="name" value="<?= $selectedUser['username']; ?>" required><br>
 
@@ -47,6 +49,8 @@ $users = $db->getUsers();
                 ?>
             </select><br>
             <button type="submit" name="submit">Update</button><br>
+            <a href="deleteUser.php?id=<?php echo $selectedUser['id']; ?>" onclick="return confirm('Are you sure you want to delete this NFT?')">Delete</a>
+
         </form>
     <?php }
     ?>
