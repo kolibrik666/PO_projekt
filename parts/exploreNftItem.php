@@ -1,18 +1,15 @@
 <?php
-include_once "lib/Common.php";
 include_once "lib/DB.php";
 include_once "lib/functions.php";
 
-use praca_Pavlisin\Lib\Common;
 use praca_Pavlisin\Lib\DB;
 
-$common = new Common();
 $db = new DB("localhost", 3306, "root", "", "nft_db");
 $nftItems = $db->getNftItems();
 
 foreach ($nftItems as $title => $item)
 {
-    if ($item["approved"] !== 1) return;
+    if ($item["approved"] !== 1) continue;
     $endsInDisplay = formatTimeDisplay($item['ends_in']);
 ?>
     <div class="col-lg-3">

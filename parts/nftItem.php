@@ -13,7 +13,7 @@ $nftItems = $db->getNftItems();
 
 foreach ($nftItems as $title => $item)
 {
-    if ($item["approved"] !== 1) return;
+    if ($item["approved"] !== 1) continue;
     $priceInUsd = convertEthToUsd($item['price']);
     $endsInDisplay = formatTimeDisplay($item['ends_in']);
     ?>

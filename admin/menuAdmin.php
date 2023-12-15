@@ -61,12 +61,10 @@ $db = new DB("localhost", 3306, "root", "", "nft_db");
                     <ul class="main-menu" id="main-menu container">
                         <li><a href="menuAdmin.php">Main menu</a></li>
                         <li><a href="insertNft.php">Insert nft</a></li>
-                        <li><a href="insertNft.php">Delete nft</a></li>
-                        <li><a href="updateNft.php">Update nft</a></li>
+                        <li><a href="updateNft.php">Manage nft</a></li>
                         <li><a href="approveNft.php">Approve nft</a></li>
-                        <li><a href="insertNft.php">Insert user</a></li>
-                        <li><a href="insertNft.php">Delete user</a></li>
-                        <li><a href="insertNft.php">Update user</a></li>
+                        <li><a href="insertUser.php">Insert user</a></li>
+                        <li><a href="updateUser.php">Manage user</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </nav>

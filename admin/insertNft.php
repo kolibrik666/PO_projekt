@@ -11,11 +11,8 @@ if (isset($_POST['submit'])) {
     $date = date('Y-m-d', strtotime($_POST['date']));
 
     $insert = $db->insertNft($title, $description, $price, $royalties, $image, $date,1, $user_id);
-    if ($insert) {
-        header("Location: menuAdmin.php");
-    } else {
-        header("Location: menuAdmin.php");
-    }
+    header("Location: insertNft.php");
+
 }
 ?>
 
@@ -28,13 +25,6 @@ if (isset($_POST['submit'])) {
         <textarea name="description"></textarea><br>
         <label for="price">Price (in ETH):</label>
         <input type="text" name="price" value="" required><br>
-        <label for="user_id">User:</label>
-        <select name="user_id" required>
-            <?php
-            $users = $db->getUsers();
-            foreach ($users as $user) echo '<option value="' . $user['id'] . '">' . $user['username'] . '</option>';
-            ?>
-        </select><br>
         </select>
         <label for="image_number">Image number:</label>
         <select name="image_number" required>
@@ -49,6 +39,13 @@ if (isset($_POST['submit'])) {
         <input type="text" name="royalties" value=""><br>
         <label for="date">Ends in Date:</label>
         <input type="date" name="date" value=""><br>
+        <label for="user_id">User:</label>
+        <select name="user_id" required>
+            <?php
+            $users = $db->getUsers();
+            foreach ($users as $user) echo '<option value="' . $user['id'] . '">' . $user['username'] . '</option>';
+            ?>
+        </select><br>
         <input type="submit" name="submit" value="Add NFT">
     </form>
 </div>

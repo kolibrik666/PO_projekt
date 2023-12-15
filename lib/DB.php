@@ -1,7 +1,7 @@
 <?php
 
 namespace praca_Pavlisin\Lib;
-
+use PDO;
 class DB
 {
     private $host = "localhost";
@@ -136,6 +136,17 @@ class DB
         return $result['count'] > 0;
     }
 
+    public function getUser($id)
+    {
+        $sql = "SELECT * FROM users WHERE id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getUserIdByUsername($username)
     {
         $sql = "SELECT id FROM users WHERE username = :username";
@@ -159,7 +170,18 @@ class DB
         $stm->bindValue(":username", $username);
         $stm->bindValue(":user_image_num", $user_image_num);
         $result = $stm->execute();
+        return $result;
+    }
 
+    public function updateUser($id,$username,$user_image_num)
+    {
+        $sql = "UPDATE users SET ";
+        if (!empty($username)) $sql .= " username = '" . $username . "'";
+        if (!empty($user_image_num)) $sql .= ", user_image_num = '" . $user_image_num . "'";
+        $sql .= " WHERE id = " . $id;
+
+        $stmt = $this->connection->prepare($sql);
+        $result = $stmt->execute();
         return $result;
     }
 
@@ -185,7 +207,6 @@ class DB
         $sql = "SELECT * FROM nft WHERE id = ".$id;
         $query = $this->connection->query($sql);
         $data = $query->fetch(\PDO::FETCH_ASSOC);
-
         return $data;
     }
 
@@ -208,22 +229,20 @@ class DB
         return $stmt->execute();
     }
 
-    public function sapproveNft($id,$approved)
-    {
-        $sql = "UPDATE nft SET ";
-        if (!empty($approved)) $sql .= ", approved = '" . $approved . "'";
-        $sql .= " WHERE id = " . $id;
-        $stmt = $this->connection->prepare($sql);
-        return $stmt->execute();
-    }
     public function approveNft($id, $approved)
     {
         $sql = "UPDATE nft SET approved = :approved WHERE id = :id";
         $stmt = $this->connection->prepare($sql);
-        $stmt->bindValue(':approved', $approved, PDO::PARAM_STR);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->bindParam(':approved', $approved, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 
-        return $stmt->rowCount() > 0;
+    public function deleteNft($id)
+    {
+        $sql = "DELETE FROM nft WHERE id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        return $stmt->execute();
     }
 }
