@@ -231,8 +231,7 @@ https://templatemo.com/tm-577-liberty-market
             <h2><em>Items</em> Currently In The Market.</h2>
           </div>
         </div>
-
-
+          
         <div class="col-lg-12">
           <div class="row grid">
               <?php
