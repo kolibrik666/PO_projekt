@@ -51,7 +51,7 @@ $users = $db->getUsers();
                 ?>
             </select><br>
             <button type="submit" name="submit">Update</button><br>
-            <a href="deleteUser.php?id=<?php echo $selectedUser['id']; ?>" onclick="return confirm('Are you sure you want to delete this NFT?')">Delete</a>
+            <a href="deleteUser.php?id=<?php echo $selectedUser['id']; ?>" onclick="return confirm('Are you sure you want to delete this User?')">Delete</a>
 
         </form>
     <?php }

@@ -48,7 +48,6 @@ $db = new DB("localhost", 3306, "root", "", "nft_db");
         }
     </style>
 </head>
-<body>
 
 <div class="tm-top-header">
     <div class="container">
@@ -59,7 +58,6 @@ $db = new DB("localhost", 3306, "root", "", "nft_db");
                 </div>
                 <nav class="tm-nav">
                     <ul class="main-menu" id="main-menu container">
-                        <li><a href="menuAdmin.php">Main menu</a></li>
                         <li><a href="insertNft.php">Insert nft</a></li>
                         <li><a href="updateNft.php">Manage nft</a></li>
                         <li><a href="approveNft.php">Approve nft</a></li>
@@ -72,5 +70,3 @@ $db = new DB("localhost", 3306, "root", "", "nft_db");
         </div>
     </div>
 </div>
-
-</body>

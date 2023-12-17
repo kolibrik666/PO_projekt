@@ -10,9 +10,11 @@ if (isset($_GET['id'])) {
         header("Location: updateNft.php");
         exit();
     } else {
+        header("Location: deleteNft.php");
         echo "Failed to delete";
     }
 } else {
+    header("Location: deleteNft.php");
     echo "Invalid ID";
 }
 ?>

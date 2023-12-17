@@ -185,7 +185,29 @@ class DB
     }
     public function deleteUser($id)
     {
+        $sql = "DELETE FROM users WHERE id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $result = $stmt->execute();
+        return $result;
+    }
 
+    public function deleteSellersByUserId($id)
+    {
+        $sql = "DELETE FROM sellers WHERE users_id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $result = $stmt->execute();
+        return $result;
+    }
+
+    public function deleteNftsByUserId($id)
+    {
+        $sql = "DELETE FROM nft WHERE users_id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $result = $stmt->execute();
+        return $result;
     }
     public function insertNft($title,$description,$price,$royalties,$image_num,$ends_in,$approved,$users_id)
     {
